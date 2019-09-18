@@ -9,11 +9,11 @@
     "timestamps": true
   },
   "attributes": {
-    "countryprefix": {
+    "countryPrefix": {
       "required": true,
       "type": "string"
     },
-    "nationalnumber": {
+    "nationalNumber": {
       "required": true,
       "type": "string"
     },
