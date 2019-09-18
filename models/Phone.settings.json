@@ -24,7 +24,6 @@
     },
     "user": {
       "model": "user",
-      "via": "phone",
       "plugin": "users-permissions"
     }
   }

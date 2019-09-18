@@ -1,5 +1,5 @@
 {
-  "name": "strapi-plugin-strapi-plugin-facebook-account-kit",
+  "name": "strapi-plugin-facebook-account-kit",
   "version": "0.0.0",
   "description": "Strapi plugin for authenticate using Facebook Account Kit.",
   "strapi": {

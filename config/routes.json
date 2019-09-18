@@ -5,7 +5,8 @@
       "path": "/signin",
       "handler": "StrapiPluginFacebookAccountKit.signin",
       "config": {
-        "policies": []
+        "policies": [],
+        "prefix": false
       }
     },
     {
@@ -13,7 +14,8 @@
       "path": "/signup",
       "handler": "StrapiPluginFacebookAccountKit.signup",
       "config": {
-        "policies": []
+        "policies": [],
+        "prefix": false
       }
     }
   ]
