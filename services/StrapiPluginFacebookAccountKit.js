@@ -84,7 +84,7 @@ module.exports = {
     {
         let user, phone;
 
-        phone = await strapi.plugins[ 'strapi-plugin-facebook-account-kit' ].services.phone.create( params.phone );
+        phone = await strapi.plugins[ 'strapi-plugin-facebook-account-kit' ].models.phone.create( params.phone );
         // address = await strapi.services.address.create( params.address );
         // motorcycle = await strapi.services.motorcycle.create( params.motorcycles[ 0 ] );
 
@@ -105,7 +105,7 @@ module.exports = {
             console.log( error );
             try
             {
-                phone = await strapi.plugins[ 'strapi-plugin-facebook-account-kit' ].services.phone.deleteOne( phone.id );
+                phone = await strapi.plugins[ 'strapi-plugin-facebook-account-kit' ].models.phone.deleteOne( phone.id );
                 // address = await strapi.services.address.deleteOne( address );
                 // motorcycle = await strapi.services.motorcycle.deleteOne( motorcycle );
             } catch ( error )

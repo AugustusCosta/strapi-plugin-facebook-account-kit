@@ -40,6 +40,10 @@
       "url": "https://github.com/AugustusCosta/strapi-plugin-facebook-account-kit"
     }
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/AugustusCosta/strapi-plugin-facebook-account-kit.git"
+  },
   "engines": {
     "node": ">=10.0.0",
     "npm": ">=6.0.0"
