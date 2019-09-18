@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * StrapiPluginFacebookAccountKit.js controller
+ * FacebookAccountKit.js controller
  *
- * @description: A set of functions called "actions" of the `strapi-plugin-facebook-account-kit` plugin.
+ * @description: A set of functions called "actions" of the `facebook-account-kit` plugin.
  */
 
 module.exports = {
@@ -22,19 +22,19 @@ module.exports = {
     const auth = ctx.request.body.auth;
 
 
-    if ( strapi.plugins[ 'strapi-plugin-facebook-account-kit' ].config.accountKit.csrf !== auth.state )
+    if ( strapi.plugins[ 'facebook-account-kit' ].config.accountKit.csrf !== auth.state )
       return ctx.forbidden( 'Erro na validação de segurança' );
 
 
-    // console.log( validationResult = await strapi.plugins[ 'strapi-plugin-facebook-account-kit' ].services );
+    // console.log( validationResult = await strapi.plugins[ 'facebook-account-kit' ].services );
 
-    validationResult = await strapi.plugins[ 'strapi-plugin-facebook-account-kit' ].services.strapipluginfacebookaccountkit.validate( auth );
+    validationResult = await strapi.plugins[ 'facebook-account-kit' ].services.facebookaccountkit.validate( auth );
 
     if ( !validationResult ) return ctx.forbidden( 'Erro na validação do código com Facebook' );
 
 
 
-    phone = await strapi.plugins[ 'strapi-plugin-facebook-account-kit' ].models.phone.findOne(
+    phone = await strapi.plugins[ 'facebook-account-kit' ].models.phone.findOne(
       validationResult
       // {
       //   countryPrefix: '55',
@@ -74,7 +74,7 @@ module.exports = {
 
     if ( !params || !params.phone ) return ctx.badData( 'Dados obrigatórios não enviados' );
 
-    user = await strapi.plugins[ 'strapi-plugin-facebook-account-kit' ].services.strapipluginfacebookaccountkit.signup( params );
+    user = await strapi.plugins[ 'facebook-account-kit' ].services.facebookaccountkit.signup( params );
     if ( !user ) return ctx.badData( 'Não foi possível realizar o cadastro' );
 
     token = strapi.plugins[ 'users-permissions' ].services.jwt.issue( user, { "ignoreExpiration": true } );

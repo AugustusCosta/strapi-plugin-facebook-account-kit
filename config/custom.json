@@ -1,5 +1,10 @@
 {
   "accountKit": {
-    
+    "appId": "",
+    "appSecret": "",
+    "token": "",
+    "csrf": "",
+    "validateCodeUrl": "https://graph.accountkit.com/v1.3/access_token?grant_type=authorization_code",
+    "validateTokenUrl": "https://graph.accountkit.com/v1.3/me/?access_token="
   }
 }

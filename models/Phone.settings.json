@@ -11,20 +11,24 @@
   "attributes": {
     "countryPrefix": {
       "required": true,
+      "configurable": false,
       "type": "string"
     },
     "nationalNumber": {
       "required": true,
+      "configurable": false,
       "type": "string"
     },
     "number": {
       "unique": true,
       "required": true,
+      "configurable": false,
       "type": "string"
     },
     "user": {
       "model": "user",
-      "plugin": "users-permissions"
+      "plugin": "users-permissions",
+      "configurable": false
     }
   }
 }

@@ -3,7 +3,7 @@
     {
       "method": "POST",
       "path": "/signin",
-      "handler": "StrapiPluginFacebookAccountKit.signin",
+      "handler": "FacebookAccountKit.signin",
       "config": {
         "policies": [],
         "prefix": false
@@ -12,7 +12,7 @@
     {
       "method": "POST",
       "path": "/signup",
-      "handler": "StrapiPluginFacebookAccountKit.signup",
+      "handler": "FacebookAccountKit.signup",
       "config": {
         "policies": [],
         "prefix": false

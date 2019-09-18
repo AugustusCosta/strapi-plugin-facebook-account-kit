@@ -3,7 +3,7 @@
 const axios = require( 'axios' );
 
 /**
- * StrapiPluginFacebookAccountKit.js service
+ * FacebookAccountKit.js service
  *
  * @description: A set of functions similar to controller's actions to avoid code duplication.
  */
@@ -13,10 +13,10 @@ module.exports = {
     validate: async auth =>
     {
         let result;
-        let validateCodeUrl = strapi.plugins[ 'strapi-plugin-facebook-account-kit' ].config.accountKit.validateCodeUrl;
-        let validateTokenUrl = strapi.plugins[ 'strapi-plugin-facebook-account-kit' ].config.accountKit.validateTokenUrl;
-        let appId = strapi.plugins[ 'strapi-plugin-facebook-account-kit' ].config.accountKit.appId;
-        let appSecret = strapi.plugins[ 'strapi-plugin-facebook-account-kit' ].config.accountKit.appSecret;
+        let validateCodeUrl = strapi.plugins[ 'facebook-account-kit' ].config.accountKit.validateCodeUrl;
+        let validateTokenUrl = strapi.plugins[ 'facebook-account-kit' ].config.accountKit.validateTokenUrl;
+        let appId = strapi.plugins[ 'facebook-account-kit' ].config.accountKit.appId;
+        let appSecret = strapi.plugins[ 'facebook-account-kit' ].config.accountKit.appSecret;
 
         validateCodeUrl += "&code=" + auth.code;
         validateCodeUrl += "&access_token=AA|" + appId + "|" + appSecret;
@@ -84,20 +84,13 @@ module.exports = {
     {
         let user, phone;
 
-        phone = await strapi.plugins[ 'strapi-plugin-facebook-account-kit' ].models.phone.create( params.phone );
-        // address = await strapi.services.address.create( params.address );
-        // motorcycle = await strapi.services.motorcycle.create( params.motorcycles[ 0 ] );
+        phone = await strapi.plugins[ 'facebook-account-kit' ].models.phone.create( params.phone );
 
         try
         {
             user = await strapi.plugins[ 'users-permissions' ].services.user.add(
                 {
                     ...params,
-
-                    // username: params.username ? params.username : params.name,
-                    // phone: phone.id,
-                    // address: address.id,
-                    // motorcycles: [ motorcycle.id ]
                 } );
             return user;
         } catch ( error )
@@ -105,9 +98,7 @@ module.exports = {
             console.log( error );
             try
             {
-                phone = await strapi.plugins[ 'strapi-plugin-facebook-account-kit' ].models.phone.deleteOne( phone.id );
-                // address = await strapi.services.address.deleteOne( address );
-                // motorcycle = await strapi.services.motorcycle.deleteOne( motorcycle );
+                phone = await strapi.plugins[ 'facebook-account-kit' ].models.phone.deleteOne( phone.id );
             } catch ( error )
             {
                 console.log( error );
