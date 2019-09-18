@@ -1,0 +1,20 @@
+{
+  "routes": [
+    {
+      "method": "POST",
+      "path": "/signin",
+      "handler": "StrapiPluginFacebookAccountKit.signin",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/signup",
+      "handler": "StrapiPluginFacebookAccountKit.signup",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

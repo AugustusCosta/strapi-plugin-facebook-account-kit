@@ -1,0 +1,31 @@
+{
+  "connection": "default",
+  "collectionName": "",
+  "info": {
+    "name": "phone",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "countryprefix": {
+      "required": true,
+      "type": "string"
+    },
+    "nationalnumber": {
+      "required": true,
+      "type": "string"
+    },
+    "number": {
+      "unique": true,
+      "required": true,
+      "type": "string"
+    },
+    "user": {
+      "model": "user",
+      "via": "phone",
+      "plugin": "users-permissions"
+    }
+  }
+}
