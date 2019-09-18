@@ -1,10 +1,5 @@
 {
   "accountKit": {
-    "appId": "529395021164360",
-    "appSecret": "2a94528989ef0003f07fe6fbc565135e",
-    "token": "61dd348067c49b2b7564bdeb5673f7f9",
-    "csrf": "WSKKWOSOOW2*@&$EWE@@2231231",
-    "validateCodeUrl": "https://graph.accountkit.com/v1.3/access_token?grant_type=authorization_code",
-    "validateTokenUrl": "https://graph.accountkit.com/v1.3/me/?access_token="
+    
   }
 }
