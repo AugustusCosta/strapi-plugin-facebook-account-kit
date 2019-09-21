@@ -47,17 +47,17 @@ module.exports = {
     if ( !phone || !phone.user ) return ctx.send( { phone: validationResult } );
 
 
-    user = phone.user;
-    // user = await strapi.plugins[ 'users-permissions' ].models.user.findOne( phone[ 0 ].user )
-    // .populate( 'phone' )
-    // .populate( 'motorcycles' )
-    // .populate( 'address' )
-    ;
+    // user = phone.user;
+    user = await strapi.plugins[ 'users-permissions' ].models.user.findOne( phone.user )
+      .populate( 'phone' )
+      .populate( 'motorcycles' )
+      .populate( 'address' )
+      ;
 
 
     if ( user.blocked ) return ctx.unauthorized( 'Erro teste' );
 
-    token = strapi.plugins[ 'users-permissions' ].services.jwt.issue( user, { "ignoreExpiration": true } );
+    token = strapi.plugins[ 'users-permissions' ].services.jwt.issue( user, {} );
 
     return ctx.send( {
       user,
@@ -71,13 +71,16 @@ module.exports = {
     let user, token;
     const params = ctx.request.body.user;
 
+    // console.log( "PARAMS" );
+    // console.log( params );
+
 
     if ( !params || !params.phone ) return ctx.badData( 'Dados obrigatórios não enviados' );
 
     user = await strapi.plugins[ 'facebook-account-kit' ].services.facebookaccountkit.signup( params );
     if ( !user ) return ctx.badData( 'Não foi possível realizar o cadastro' );
 
-    token = strapi.plugins[ 'users-permissions' ].services.jwt.issue( user, { "ignoreExpiration": true } );
+    token = strapi.plugins[ 'users-permissions' ].services.jwt.issue( user, {} );
 
     return ctx.send( {
       user,
