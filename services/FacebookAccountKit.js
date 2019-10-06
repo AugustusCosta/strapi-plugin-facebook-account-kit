@@ -82,25 +82,17 @@ module.exports = {
 
     signup: async params =>
     {
-        let user, phone, address, motorcycle;
-
-        // console.log( strapi );
-        // console.log( strapi.api[ 'address' ] );
-
+        let user, phone;
 
         try
         {
-            address = await strapi.models.address.create( params.address );
-            motorcycle = await strapi.models.motorcycle.create( params.motorcycles[ 0 ] );
             phone = await strapi.plugins[ 'facebook-account-kit' ].models.phone.create( params.phone );
             
             user = await strapi.plugins[ 'users-permissions' ].services.user.add(
                 {
                     ...params,
                     username: params.username ? params.username : params.name,
-                    phone: phone.id,
-                    address: address.id,
-                    motorcycles: [ motorcycle.id ]
+                    phone: phone.id
                 } );
             return user;
         } catch ( error )
@@ -109,10 +101,6 @@ module.exports = {
             console.log( error );
             try
             {
-                if ( address )
-                    await strapi.models.address.deleteOne( address );
-                if ( motorcycle )
-                    await strapi.models.motorcycle.deleteOne( motorcycle );
                 if ( phone )
                     await strapi.plugins[ 'facebook-account-kit' ].models.phone.deleteOne( phone.id );
                 if ( user )
