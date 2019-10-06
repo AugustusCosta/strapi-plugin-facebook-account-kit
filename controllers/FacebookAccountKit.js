@@ -23,39 +23,25 @@ module.exports = {
 
 
     if ( strapi.plugins[ 'facebook-account-kit' ].config.accountKit.csrf !== auth.state )
-      return ctx.forbidden( 'Erro na validação de segurança' );
-
-
-    // console.log( validationResult = await strapi.plugins[ 'facebook-account-kit' ].services );
+      return ctx.forbidden( 'Security validation error' );
 
     validationResult = await strapi.plugins[ 'facebook-account-kit' ].services.facebookaccountkit.validate( auth );
 
-    if ( !validationResult ) return ctx.forbidden( 'Erro na validação do código com Facebook' );
+    if ( !validationResult ) return ctx.forbidden( 'Facebook code validation error' );
 
 
 
     phone = await strapi.plugins[ 'facebook-account-kit' ].models.phone.findOne(
       validationResult
-      // {
-      //   countryPrefix: '55',
-      //   nationalNumber: '85988424402',
-      //   number: '+5585988424402',
-      // }
     ).populate( 'user' );
 
-    // if ( !phone || !phone.length ) return ctx.send( { phone: {} } );
     if ( !phone || !phone.user ) return ctx.send( { phone: validationResult } );
 
-
-    // user = phone.user;
     user = await strapi.plugins[ 'users-permissions' ].models.user.findOne( phone.user )
-      .populate( 'phone' )
-      .populate( 'motorcycles' )
-      .populate( 'address' )
-      ;
+      .populate( 'phone' );
 
 
-    if ( user.blocked ) return ctx.unauthorized( 'Erro teste' );
+    if ( user.blocked ) return ctx.unauthorized( 'Blocked user' );
 
     token = strapi.plugins[ 'users-permissions' ].services.jwt.issue( user, {} );
 
@@ -71,14 +57,11 @@ module.exports = {
     let user, token;
     const params = ctx.request.body.user;
 
-    // console.log( "PARAMS" );
-    // console.log( params );
 
-
-    if ( !params || !params.phone ) return ctx.badData( 'Dados obrigatórios não enviados' );
+    if ( !params || !params.phone ) return ctx.badData( 'Required data not sent' );
 
     user = await strapi.plugins[ 'facebook-account-kit' ].services.facebookaccountkit.signup( params );
-    if ( !user ) return ctx.badData( 'Não foi possível realizar o cadastro' );
+    if ( !user ) return ctx.badData( 'Unable to register' );
 
     token = strapi.plugins[ 'users-permissions' ].services.jwt.issue( user, {} );
 
