@@ -1,9 +1,9 @@
 {
   "name": "strapi-plugin-facebook-account-kit",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Strapi plugin for authenticate using Facebook Account Kit.",
   "strapi": {
-    "name": "strapi-plugin-facebook-account-kit",
+    "name": "Facebook Account kit",
     "icon": "plug",
     "description": "Authenticate with Facebook Account Kit."
   },
@@ -24,7 +24,8 @@
   },
   "dependencies": {
     "axios": "^0.19.0",
-    "jsonwebtoken": "^8.1.0"
+    "jsonwebtoken": "^8.1.0",
+    "strapi-utils": "^3.0.0-beta.16.4"
   },
   "devDependencies": {
     "strapi-helper-plugin": "^3.0.0-beta.16.4"
@@ -33,6 +34,9 @@
     "name": "Augustus Costa",
     "email": "augustuscosta@gmail.com",
     "url": "https://github.com/AugustusCosta/strapi-plugin-facebook-account-kit"
+  },
+  "bugs": {
+    "url": "https://github.com/AugustusCosta/strapi-plugin-facebook-account-kit/issues"
   },
   "maintainers": [
     {
