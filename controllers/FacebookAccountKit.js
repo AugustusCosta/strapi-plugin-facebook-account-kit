@@ -37,7 +37,7 @@ module.exports = {
 
     if ( !phone || !phone.user ) return ctx.send( { phone: validationResult } );
 
-    user = await strapi.plugins[ 'users-permissions' ].models.user.findOne( phone.user )
+    user = await strapi.plugins[ 'users-permissions' ].models.user.findOne( { _id: phone.user.id } )
       .populate( 'phone' );
 
 
