@@ -17,6 +17,95 @@
         "policies": [],
         "prefix": false
       }
+    },
+    {
+      "method": "GET",
+      "path": "/phones",
+      "handler": "Phone.find",
+      "config": {
+        "policies": [],
+        "prefix": false,
+        "description": "Retrieve all phones documents",
+        "tag": {
+          "plugin": "facebook-account-kit",
+          "name": "Phone",
+          "actionType": "find"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/phones/count",
+      "handler": "Phone.count",
+      "config": {
+        "policies": [],
+        "prefix": false,
+        "description": "Count all phones documents",
+        "tag": {
+          "plugin": "facebook-account-kit",
+          "name": "Phone"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/phones/:_id",
+      "handler": "Phone.findOne",
+      "config": {
+        "policies": [],
+        "prefix": false,
+        "description": "Retrieve a single phone depending on his id",
+        "tag": {
+          "plugin": "facebook-account-kit",
+          "name": "Phone",
+          "actionType": "findOne"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/phones",
+      "handler": "Phone.create",
+      "config": {
+        "policies": [],
+        "prefix": false,
+        "description": "Create a phone",
+        "tag": {
+          "plugin": "facebook-account-kit",
+          "name": "Phone",
+          "actionType": "create"
+        }
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/phones/:_id",
+      "handler": "Phone.update",
+      "config": {
+        "policies": [],
+        "prefix": false,
+        "description": "Update an existing phone",
+        "tag": {
+          "plugin": "facebook-account-kit",
+          "name": "Phone",
+          "actionType": "update"
+        }
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/phones/:_id",
+      "handler": "Phone.destroy",
+      "config": {
+        "policies": [],
+        "prefix": false,
+        "description": "Delete an existing phone",
+        "tag": {
+          "plugin": "facebook-account-kit",
+          "name": "Phone",
+          "actionType": "destroy"
+        }
+      }
     }
   ]
 }

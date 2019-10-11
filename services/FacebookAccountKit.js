@@ -91,16 +91,19 @@ module.exports = {
         try
         {
             address = await strapi.models.address.create( params.address );
-            motorcycle = await strapi.models.motorcycle.create( params.motorcycles[ 0 ] );
-            phone = await strapi.plugins[ 'facebook-account-kit' ].models.phone.create( params.phone );
+
+            if ( params.motorcycles && params.motorcycles.length ) motorcycle = await strapi.models.motorcycle.create( params.motorcycles[ 0 ] );
             
+            phone = await strapi.plugins[ 'facebook-account-kit' ].models.phone.create( params.phone );
+
             user = await strapi.plugins[ 'users-permissions' ].services.user.add(
                 {
                     ...params,
+                    confirmed: true,
                     username: params.username ? params.username : params.name,
                     phone: phone.id,
                     address: address.id,
-                    motorcycles: [ motorcycle.id ]
+                    motorcycles: motorcycle ? [ motorcycle.id ] : []
                 } );
             return user;
         } catch ( error )

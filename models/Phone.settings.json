@@ -28,8 +28,7 @@
     "user": {
       "model": "user",
       "via": "phone",
-      "plugin": "users-permissions",
-      "configurable": false
+      "plugin": "users-permissions"
     }
   }
 }

@@ -43,19 +43,27 @@ module.exports = {
       // }
     ).populate( 'user' );
 
+
+    console.log( 'phone' );
+    console.log( phone );
+
+
     // if ( !phone || !phone.length ) return ctx.send( { phone: {} } );
     if ( !phone || !phone.user ) return ctx.send( { phone: validationResult } );
 
 
     // user = phone.user;
-    user = await strapi.plugins[ 'users-permissions' ].models.user.findOne( phone.user )
+    user = await strapi.plugins[ 'users-permissions' ].models.user.findOne( { _id: phone.user.id } )
       .populate( 'phone' )
       .populate( 'motorcycles' )
-      .populate( 'address' )
-      ;
+      .populate( 'address' );
+
+    console.log( 'user' );
+    console.log( user );
 
 
-    if ( user.blocked ) return ctx.unauthorized( 'Erro teste' );
+    if ( !user ) return ctx.badData( 'Erro na consulta' );
+    if ( user.blocked ) return ctx.unauthorized( 'Usuário bloquedo' );
 
     token = strapi.plugins[ 'users-permissions' ].services.jwt.issue( user, {} );
 
